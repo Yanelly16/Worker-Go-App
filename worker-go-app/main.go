@@ -102,9 +102,55 @@ func worker(wg *sync.WaitGroup, tasks <-chan string, results chan<- ScanResult, 
         results <- result
     }
 }
+func printTextSummary(summary ScanSummary) {
+    fmt.Println("\nScan Summary:")
+    fmt.Printf("Target: %s\n", summary.Target)
+    if summary.StartPort != 0 && summary.EndPort != 0 {
+        fmt.Printf("Port range: %d-%d\n", summary.StartPort, summary.EndPort)
+    }
+    fmt.Printf("Ports scanned: %d\n", summary.PortsScanned)
+    fmt.Printf("Open ports: %d\n", summary.OpenPorts)
+    fmt.Printf("Time taken: %v\n", summary.TimeTaken)
+
+    if len(summary.Results) > 0 {
+        fmt.Println("\nOpen Ports:")
+        for _, result := range summary.Results {
+            fmt.Printf("  %d: %s\n", result.Port, result.Banner)
+        }
+    }
+}
 func main() {
         flag.Parse()
+        targetList := strings.Split(targets, ",")
+    var portList []int
 
+    if portsList != "" {
+        for _, p := range strings.Split(portsList, ",") {
+            port, _ := strconv.Atoi(strings.TrimSpace(p))
+            portList = append(portList, port)
+        }
+    }
+
+    for _, target := range targetList {
+        startTime := time.Now()
+        openPorts := scanTarget(target, portList)
+        summary := ScanSummary{
+            Target:       target,
+            StartPort:    startPort,
+            EndPort:      endPort,
+            PortsScanned: len(portList),
+            OpenPorts:    len(openPorts),
+            TimeTaken:    time.Since(startTime).String(),
+            Results:      openPorts,
+        }
+
+        if jsonOutput {
+            jsonData, _ := json.MarshalIndent(summary, "", "  ")
+            fmt.Println(string(jsonData))
+        } else {
+            printTextSummary(summary)
+        }
+    }
 
 
 	
