@@ -12,23 +12,23 @@ This is a high-performance TCP port scanner built with Go. It features concurren
 ✅ Progress indicators during long scans  
 ✅ Specific port scanning capability  
 
-## Setup Instructions 📦
+## **Setup Instructions** 📦
 
-### Prerequisites
+### **Prerequisites**
 - Go 1.16+ installed
 - Network access to target systems
 
-### Steps
+### **Steps**
 - cd into the directory 
   cd worker-go-app
 
-### Usage Guide
+### **Usage Guide**
 - Basic the application
   go build -o port-scanner
 - Basic Scanning
 ./port-scanner -targets= scanme.nmap.org
 
-## Sample Output
+## **Sample Output**
 Port 22 is open - SSH-2.0-OpenSSH_8.2
 Port 80 is open - HTTP/1.1 200 OK
 
@@ -38,7 +38,7 @@ Ports scanned: 1024
 Open ports: 2
 Time taken: 5.26s
 
-## JSON Output
+## **JSON Output**
 
 {
   "target": "example.com",
@@ -59,5 +59,5 @@ Time taken: 5.26s
   ]
 }
 
-### Demo Video
+## **Demo Video**
 
