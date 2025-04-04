@@ -1,5 +1,4 @@
 // Filename: main.go
-// Filename: main.go
 // Purpose: Concurrent TCP port scanner with configurable options and enhanced features
 package main
 
