@@ -18,9 +18,27 @@ type ScanSummary struct {
     TimeTaken    string       `json:"time_taken"`
     Results      []ScanResult `json:"results,omitempty"`
 }
+var (
+    targets    string
+    startPort  int
+    endPort    int
+    workers    int
+    timeout    int
+    jsonOutput bool
+    portsList  string
+)
 
+func init() {
+    flag.StringVar(&targets, "targets", "scanme.nmap.org", "Comma-separated list of targets")
+    flag.IntVar(&startPort, "start-port", 1, "Start port number")
+    flag.IntVar(&endPort, "end-port", 1024, "End port number")
+    flag.IntVar(&workers, "workers", 100, "Number of concurrent workers")
+    flag.IntVar(&timeout, "timeout", 5, "Connection timeout in seconds")
+    flag.BoolVar(&jsonOutput, "json", false, "Output results in JSON format")
+    flag.StringVar(&portsList, "ports", "", "Comma-separated list of specific ports to scan")
+}
 func main() {
-
+        flag.Parse()
 
 
 
