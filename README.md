@@ -28,7 +28,7 @@ This is a high-performance TCP port scanner built with Go. It features concurren
 - Basic Scanning
 ./port-scanner -targets= scanme.nmap.org
 
-### Sample Output
+## Sample Output
 Port 22 is open - SSH-2.0-OpenSSH_8.2
 Port 80 is open - HTTP/1.1 200 OK
 
@@ -38,7 +38,7 @@ Ports scanned: 1024
 Open ports: 2
 Time taken: 5.26s
 
-### JSON Output
+## JSON Output
 
 {
   "target": "example.com",
